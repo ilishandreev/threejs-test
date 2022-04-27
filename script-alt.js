@@ -13,16 +13,14 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 
- // Model
+// Model
 const loader = new GLTFLoader()
 loader.load('./model/Audit (assets).gltf', gltf => {
-model_test = gltf.scene
-scene.add(model_test)
-// model.rotation.x = 1.5708
-model_test.rotation.set(1.5708,0,0)
-// gltf.rotateX(0.5)
-}, 
-    function (error) {
+        model_test = gltf.scene
+        scene.add(model_test)
+            // model_test.rotation.set(1.5708, 0, 0)
+    },
+    function(error) {
         console.log('Error: ' + error)
     }
 )
@@ -43,16 +41,6 @@ pointLight2.position.set(-1.86, 1, -1.65)
 pointLight2.intensity = 10
 scene.add(pointLight2)
 
-// const light1 = gui.addFolder('Light 1')
-
-// light1.add(pointLight2.position, 'x').min(-6).max(3).step(0.01)
-// light1.add(pointLight2.position, 'y').min(-3).max(3).step(0.01)
-// light1.add(pointLight2.position, 'z').min(-3).max(3).step(0.01)
-// light1.add(pointLight2, 'intensity').min(0).max(10).step(0.01)
-
-// const pointLishtHelper = new THREE.PointLightHelper(pointLight2, 1)
-// scene.add(pointLishtHelper)
-
 // Light 3
 
 const pointLight3 = new THREE.PointLight(0xe1ff, 2)
@@ -60,29 +48,8 @@ pointLight3.position.set(0.69, -3, -3)
 pointLight3.intensity = 6.8
 scene.add(pointLight3)
 
-// const light2 = gui.addFolder('Light 2')
+// Sizes
 
-// light2.add(pointLight3.position, 'x').min(-6).max(3).step(0.01)
-// light2.add(pointLight3.position, 'y').min(-3).max(3).step(0.01)
-// light2.add(pointLight3.position, 'z').min(-3).max(3).step(0.01)
-// light2.add(pointLight3, 'intensity').min(0).max(10).step(0.01)
-
-// const light2Color = {
-//     color: 0xff0000
-// }
-
-// light2.addColor(light2Color, 'color')
-//     .onChange(() => {
-//         pointLight3.color.set(light2Color.color)
-//     })
-
-// const pointLishtHelper2 = new THREE.PointLightHelper(pointLight3, 1)
-// scene.add(pointLishtHelper2)
-
-
-/**
- * Sizes
- */
 const sizes = {
     width: window.innerWidth,
     height: window.innerHeight
@@ -102,10 +69,6 @@ window.addEventListener('resize', () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 })
 
-/**
- * Camera
- */
-
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 3000)
 camera.position.x = 0
@@ -114,13 +77,12 @@ camera.position.z = 3
 scene.add(camera)
 
 
-// Controls
+// // Controls
 // const controls = new OrbitControls(camera, canvas)
 // controls.enableDamping = true
 
-/**
- * Renderer
- */
+// Renderer
+
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
     alpha: true
@@ -128,10 +90,6 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(sizes.width, sizes.height)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
-
-/**
- * Animate
- */
 
 // Move object with mouse position
 
@@ -158,13 +116,6 @@ const updateModel = (event) => {
 }
 window.addEventListener('scroll', updateModel)
 
-// //Rotation by mouse click
-// document.addEventListener(`mousedown`, function () {
-//     if (model_test) {
-//         model_test.rotation.x += 0.01;
-//     }
-// })
-
 const clock = new THREE.Clock()
 
 const tick = () => {
@@ -175,12 +126,12 @@ const tick = () => {
     const elapsedTime = clock.getElapsedTime()
 
     // // Update objects
-    // model_test.rotation.y = .5 * elapsedTime
+    // model_test.rotation.z = .1 * elapsedTime
 
+    model_test.rotation.set(1.5708, 0, 0)
 
-    // model_test.rotation.y += .5 * (targetX - model_test.rotation.y) //mouse position to rotation
-    // model_test.rotation.x += .05 * (targetY - model_test.rotation.x) //mouse position to rotation
-    // model_test.position.z += .05 * (targetY - model_test.rotation.x) //mouse position to position
+    model_test.rotation.z = .05 * -targetX
+    model_test.rotation.x = model_test.rotation.x + .05 * targetY
 
     // Update Orbital Controls
     // controls.update()
@@ -192,4 +143,4 @@ const tick = () => {
     window.requestAnimationFrame(tick)
 }
 
-tick()
+setTimeout(tick, 100)

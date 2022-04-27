@@ -1,8 +1,7 @@
-import * as THREE from 'three';
-import { OrbitControls } from 'OrbitControls';
-import { GLTFLoader } from 'GLTFLoader';
-import { RectAreaLightHelper } from 'RectAreaLightHelper'
-import { RectAreaLightUniformsLib } from 'RectAreaLightUniformsLib';
+import * as THREE from 'three'
+import { GLTFLoader } from 'GLTFLoader'
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+
 
 let model_test
 

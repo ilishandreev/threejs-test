@@ -1,6 +1,6 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'GLTFLoader'
-// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+import { OrbitControls } from 'OrbitControls'
 
 
 let model_test
@@ -14,10 +14,11 @@ const scene = new THREE.Scene()
 
 // Model
 const loader = new GLTFLoader()
-loader.load('model/Audit (assets).gltf', gltf => {
+loader.load('model/Spheres.gltf', gltf => {
         model_test = gltf.scene
         scene.add(model_test)
             // model_test.rotation.set(1.5708, 0, 0)
+            model_test.scale.set(0.1,0.1,0.1)
     },
     function(error) {
         console.log('Error: ' + error)
@@ -25,32 +26,10 @@ loader.load('model/Audit (assets).gltf', gltf => {
 )
 
 
-// // Lights
-
-// const pointLight = new THREE.PointLight(0xffffff, 0.1)
-// pointLight.position.x = 2
-// pointLight.position.y = 3
-// pointLight.position.z = 4
-// scene.add(pointLight)
-
-// // Light 2
-
-// const pointLight2 = new THREE.PointLight(0xff0000, 2)
-// pointLight2.position.set(-1.86, 1, -1.65)
-// pointLight2.intensity = 10
-// scene.add(pointLight2)
-
-// // Light 3
-
-// const pointLight3 = new THREE.PointLight(0xe1ff, 2)
-// pointLight3.position.set(0.69, -3, -3)
-// pointLight3.intensity = 6.8
-// scene.add(pointLight3)
-
 
 //Ambient Light
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 1.3)
+const ambientLight = new THREE.AmbientLight(0xffffff, 1.5)
 scene.add(ambientLight)
 
 // Sizes
@@ -58,8 +37,8 @@ scene.add(ambientLight)
 const sizes = {
     // width: window.innerWidth,
     // height: window.innerHeight
-    width: 1200,
-    height: 1200
+    width: 3000,
+    height: 3000
 }
 
 // window.addEventListener('resize', () => {
@@ -86,7 +65,7 @@ const camera = new THREE.PerspectiveCamera(100, sizes.width / sizes.height, 0.1,
 
 camera.position.x = 0
 camera.position.y = 0
-camera.position.z = 3.4
+camera.position.z = 2
 scene.add(camera)
 
 

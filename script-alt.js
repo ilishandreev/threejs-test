@@ -25,54 +25,68 @@ loader.load('./model/Audit (assets).gltf', gltf => {
 )
 
 
-// Lights
+// // Lights
 
-const pointLight = new THREE.PointLight(0xffffff, 0.1)
-pointLight.position.x = 2
-pointLight.position.y = 3
-pointLight.position.z = 4
-scene.add(pointLight)
+// const pointLight = new THREE.PointLight(0xffffff, 0.1)
+// pointLight.position.x = 2
+// pointLight.position.y = 3
+// pointLight.position.z = 4
+// scene.add(pointLight)
 
-// Light 2
+// // Light 2
 
-const pointLight2 = new THREE.PointLight(0xff0000, 2)
-pointLight2.position.set(-1.86, 1, -1.65)
-pointLight2.intensity = 10
-scene.add(pointLight2)
+// const pointLight2 = new THREE.PointLight(0xff0000, 2)
+// pointLight2.position.set(-1.86, 1, -1.65)
+// pointLight2.intensity = 10
+// scene.add(pointLight2)
 
-// Light 3
+// // Light 3
 
-const pointLight3 = new THREE.PointLight(0xe1ff, 2)
-pointLight3.position.set(0.69, -3, -3)
-pointLight3.intensity = 6.8
-scene.add(pointLight3)
+// const pointLight3 = new THREE.PointLight(0xe1ff, 2)
+// pointLight3.position.set(0.69, -3, -3)
+// pointLight3.intensity = 6.8
+// scene.add(pointLight3)
+
+
+//Ambient Light
+
+const ambientLight = new THREE.AmbientLight(0xffffff, 1.3)
+scene.add(ambientLight)
 
 // Sizes
 
 const sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight
+    // width: window.innerWidth,
+    // height: window.innerHeight
+    width: 1200,
+    height: 1200
 }
 
-window.addEventListener('resize', () => {
-    // Update sizes
-    sizes.width = window.innerWidth
-    sizes.height = window.innerHeight
+// window.addEventListener('resize', () => {
+//     // Update sizes
+//     sizes.width = window.innerWidth
+//     sizes.height = window.innerHeight
 
-    // Update camera
-    camera.aspect = sizes.width / sizes.height
-    camera.updateProjectionMatrix()
+//     // Update camera
+//     camera.aspect = sizes.width / sizes.height
+//     camera.updateProjectionMatrix()
 
-    // Update renderer
-    renderer.setSize(sizes.width, sizes.height)
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-})
+//     // Update renderer
+//     renderer.setSize(sizes.width, sizes.height)
+//     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+// })
 
 // Base camera
-const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 3000)
+const camera = new THREE.PerspectiveCamera(100, sizes.width / sizes.height, 0.1, 3000)
+
+// const frustumSize = 10;
+// const aspect = window.innerWidth / window.innerHeight;
+// const camera = new THREE.OrthographicCamera(frustumSize * aspect / -2, frustumSize * aspect / 2, frustumSize / 2, frustumSize / -2, 1, 3000);
+
+
 camera.position.x = 0
 camera.position.y = 0
-camera.position.z = 3
+camera.position.z = 3.4
 scene.add(camera)
 
 
@@ -87,6 +101,7 @@ const renderer = new THREE.WebGLRenderer({
     alpha: true
 })
 renderer.setSize(sizes.width, sizes.height)
+    // renderer.setSize(1200, 1200)
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
 

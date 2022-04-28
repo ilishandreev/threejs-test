@@ -14,7 +14,7 @@ const scene = new THREE.Scene()
 
 // Model
 const loader = new GLTFLoader()
-loader.load('./model/Audit (assets).gltf', gltf => {
+loader.load('model/Audit (assets).gltf', gltf => {
         model_test = gltf.scene
         scene.add(model_test)
             // model_test.rotation.set(1.5708, 0, 0)
